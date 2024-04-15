@@ -10,6 +10,10 @@ namespace examen
     {
         static void Main(string[] args)
         {
+
+            Tienda tienda = new Tienda();
+            tienda.SelectProduct();
+
         }
     }
 }
