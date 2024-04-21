@@ -8,24 +8,51 @@ namespace examen
 {
     internal class Tienda
     {
-        int productos;
+
+        Carrito carrito = new Carrito();
+
         public void SelectProduct()
         {
             bool continueFlag = true;
             while(true) 
             { 
-            Console.WriteLine("Selecciona los productos que vas a comprar");
+                
+            Console.WriteLine("¿Que desea hacer?");
+                Console.WriteLine("1. Agregar un producto");
+                Console.WriteLine("2. Ver tus productos");
+                Console.WriteLine("3. Finalizar");
+                int option;
 
-            Console.WriteLine($"el precio total de los productos es: ");
-
-
-
-             Console.WriteLine("Quieres agregar más productos? Si o No");
-                if( Console.ReadLine() == "No") 
+                if(!int.TryParse(Console.ReadLine(), out option))
                 {
-                    continueFlag = false;
+                    Console.WriteLine("Opcion no valida");
                 }
+
+                switch(option)
+                {
+                    case 1:
+                        AddProduct();
+                        break;
+
+                        case 2:
+                        ProductList();
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Gracias por comprar. Contenido del carrito:");
+                        carrito.ProductList();
+                        break;
+                }
+
+
             }
+
+            Console.WriteLine("Quieres agregar más productos? Si o No");
+            if (Console.ReadLine() == "No")
+            {
+                continueFlag = false;
+            }
+
         }
 
         public void ReturnPrice()
@@ -42,7 +69,21 @@ namespace examen
         }
         protected void AddProduct()
         {
+            Console.WriteLine("Ingrese las caracteristicas de los productos");
+            Console.WriteLine("Nombre: ");
+            string nombre = Console.ReadLine();
+            Console.WriteLine("Color: ");
+            string color = Console.ReadLine();
+            Console.WriteLine("Precio: ");
+            float precio;
+            precio = float.Parse(Console.ReadLine());
 
         }
+        public void ProductList()
+        {
+            carrito.ProductList();
+
+        }
+
     }
 }
