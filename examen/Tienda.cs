@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,9 +13,12 @@ namespace examen
 
         Carrito carrito = new Carrito();
 
+
+            bool continueFlag = true;
         public void SelectProduct()
         {
-            bool continueFlag = true;
+
+           
             while(true) 
             { 
                 
@@ -21,26 +26,28 @@ namespace examen
                 Console.WriteLine("1. Agregar un producto");
                 Console.WriteLine("2. Ver tus productos");
                 Console.WriteLine("3. Finalizar");
-                int option;
-
-                if(!int.TryParse(Console.ReadLine(), out option))
-                {
-                    Console.WriteLine("Opcion no valida");
-                }
+                string option= Console.ReadLine();
 
                 switch(option)
                 {
-                    case 1:
+                    case "1":
                         AddProduct();
+
+
                         break;
 
-                        case 2:
+                        case "2":
                         ProductList();
                         break;
 
-                    case 3:
+                    case "3":
                         Console.WriteLine("Gracias por comprar. Contenido del carrito:");
                         carrito.ProductList();
+                        Console.WriteLine("Quieres agregar más productos? Si o No");
+                        if (Console.ReadLine() == "No")
+                        {
+                            continueFlag = false;
+                        }
                         break;
                 }
 
@@ -71,12 +78,56 @@ namespace examen
         {
             Console.WriteLine("Ingrese las caracteristicas de los productos");
             Console.WriteLine("Nombre: ");
-            string nombre = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Color: ");
             string color = Console.ReadLine();
             Console.WriteLine("Precio: ");
-            float precio;
-            precio = float.Parse(Console.ReadLine());
+            float price;
+
+
+            Console.WriteLine("Que producto deseas agregar Tela/Arcilla");
+
+            string respuesta = Console.ReadLine();
+
+            if (respuesta.ToUpper() == "Tela")
+            {
+                Console.WriteLine("Elegiste Tela\n");
+                Console.WriteLine("Tamaño:");
+                string size = Console.ReadLine();
+
+                Console.WriteLine("Material: ");
+                string material = Console.ReadLine();
+
+                carrito.AddProduct(new Tela
+                {
+                    name = name,
+                    color = color,
+                    price = price,
+                    size = size,
+                    material = material,
+                });
+            }
+
+            else
+            {
+                Console.WriteLine("Elegiste Arcilla\n");
+                Console.WriteLine("Peso:");
+                float weight;
+
+                if (!float.TryParse(Console.ReadLine(), out weight))
+                {
+                    Console.WriteLine("Peso invalido");
+                    break;
+                }
+                carrito.AddProduct(new Arcilla
+                {
+                    name = name,
+                    color = color,
+                    price = price,
+                    weight = weight,
+                });
+                Console.WriteLine("Producto agregado al carrito de compras");
+            }
 
         }
         public void ProductList()

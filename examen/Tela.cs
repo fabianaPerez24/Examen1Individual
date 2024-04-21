@@ -10,14 +10,13 @@ namespace examen
 {
     internal class Tela : Productos
     {
-        int material;
-        public Tela(int material)
-        {
-            this.material = material;
-        }
+
+        public string material { get; set; }
+        
         public override string ProductDetails()
         {
-            return name + size + price + color + material;
+            return "Nombre: " + name + "Tamaño: " + size + "Material: " + material + "Color: " + color + "Precio: " + price;
+
         }
     }
 

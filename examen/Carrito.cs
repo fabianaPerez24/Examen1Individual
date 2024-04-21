@@ -14,7 +14,7 @@ namespace examen
         {
             productos.Add(products);
         }
-        public float CalculatePrecioTotal()
+        public float CalculateTotalPrice()
         {
             float precioTotal = 0;
             foreach (var producto in productos)
@@ -30,7 +30,7 @@ namespace examen
             {
                 Console.WriteLine(producto.ProductDetails());
             }
-            Console.WriteLine("Precio total:" + CalculatePrecioTotal());
+            Console.WriteLine("Precio total:" + CalculateTotalPrice());
         }
     }
 }

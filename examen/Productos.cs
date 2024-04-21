@@ -7,21 +7,12 @@ using System.Threading.Tasks;
 namespace examen
 {
     internal class Productos: Tienda
-    {  
-        
-        string name;
-            int size;
-            float price;
-            string color;
+    {
+        public string name { get; set; }
+        public string color { get; set; }
+        public float price { get; set; }
+        public float size { get; set; }
 
-        public Productos(string name, int size, float price, string color) 
-        {
-
-            this.name = name;
-            this.size = size;
-            this.price = price;
-            this.color = color;
-        }
         public virtual string ProductDetails()
         {
             return name + size + price + color;

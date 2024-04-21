@@ -10,15 +10,12 @@ namespace examen
 {
     internal class Arcilla: Productos
     {
-        int weight;
-        public Arcilla(int weight, string name,)
-        {
-            this.weight = weight;
-            
-        }
+        public string weight { get; set; }
+
         public override string ProductDetails()
         {
-            return name + size + price + color + material;
+            return "Nombre: " + name + "Tamaño: " + size + "Peso" + weight + "Color: " + color + "Precio: " + price;
+
         }
     }
 }
